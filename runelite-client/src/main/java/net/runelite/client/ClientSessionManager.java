@@ -97,6 +97,7 @@ public class ClientSessionManager
 			}
 			sessionId = null;
 		}));
+		executorService.shutdown();
 	}
 
 	private void ping()

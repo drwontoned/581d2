@@ -91,6 +91,8 @@ public class RuneLite
 
 	private static final int MAX_OKHTTP_CACHE_SIZE = 20 * 1024 * 1024; // 20mb
 
+	private static final SecureRandom SC = new SecureRandom();
+
 	@Getter
 	private static Injector injector;
 
@@ -425,8 +427,8 @@ public class RuneLite
 				}
 			};
 
-			SSLContext sc = SSLContext.getInstance("SSL");
-			sc.init(null, new TrustManager[]{trustManager}, new SecureRandom());
+			SSLContext sc = SSLContext.getInstance("TLS");
+			sc.init(null, new TrustManager[]{trustManager}, SC);
 			okHttpClientBuilder.sslSocketFactory(sc.getSocketFactory(), trustManager);
 		}
 		catch (NoSuchAlgorithmException | KeyManagementException ex)

@@ -146,6 +146,11 @@ public class Notifier
 		{
 			executorService.execute(() -> terminalNotifierAvailable = isTerminalNotifierAvailable());
 		}
+		// If we are not running in launcher shutdown the executerService
+		else {
+			executorService.shutdown();
+		}
+
 
 		storeIcon();
 	}
